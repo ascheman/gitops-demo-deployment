@@ -36,6 +36,6 @@ jobs:
     - name: Terraform Plan
       run: scripts/terraform-plan
     - name: Prepare PR
-      run: git add plan.out plan.log && git commit -m"Apply the computed Terraform plan" && git push
+      run: git add -f plan.out plan.log && git commit -m"Apply the computed Terraform plan" && git push
 
 
