@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eu
+
+: "${AWS_ACCOUNT:=$(aws sts get-caller-identity --output text | awk '{print $1}')}"
+: "${AWS_DEFAULT_REGION:=us-east-1}"
+: "${AWS_REGION:=${AWS_DEFAULT_REGION}}"
+
+terraform fmt -check -recursive
+terraform init -backend-config "backends/${AWS_ACCOUNT}-${AWS_REGION}.tf"
+terraform validate
