@@ -1,0 +1,41 @@
+name: 'GitOps Prepare'
+
+on:
+  push:
+    branches: [ "prepare/**" ]
+  workflow_dispatch: {}
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Initialize Terraform, compute plan wrt. current state, and commit plan/log to prepare pull-request
+    - name: Terraform Init
+      run: scripts/terraform-init
+    - name: Terraform Plan
+      run: scripts/terraform-plan
+    - name: Prepare PR
+      run: git add plan.out plan.log && git commit -m"Apply the computed Terraform plan" && git push
+
+
