@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.2.7"
+  required_version = ">= 1.3.0"
 
   backend "s3" {
     // Make sure this has same prefix as the created bucket / Git repository url
@@ -9,7 +9,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.33.0"
+      version = "4.33.0"
     }
   }
 }
