@@ -40,7 +40,7 @@ jobs:
 
     # Initialize Terraform, apply plan (if it exists), and remove plan/log to finish PR
     - name: Terraform Init
-      run: scripts/terraform-init
+      run: scripts/terraform-init ${{ env.GITHUB_HEAD_REF}}
     - name: Terraform Apply
       run: scripts/terraform-apply
     - name: Finalize PR

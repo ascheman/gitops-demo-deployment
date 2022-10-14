@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_s3_bucket" "this" {
-  bucket = "aschemann-gitops-sample-${data.aws_caller_identity.current.account_id}-${data.aws_region.current.name}"
+  bucket = "aschemann-gitops-sample-${data.aws_caller_identity.current.account_id}-${terraform.workspace}-${data.aws_region.current.name}"
   tags = {
     Version    = var.deliverable_version
     Git-Commit = var.git_commit_id
