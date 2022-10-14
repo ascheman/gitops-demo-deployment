@@ -36,7 +36,7 @@ jobs:
 
     # Initialize Terraform, compute plan wrt. current state, and commit plan/log to prepare pull-request
     - name: Terraform Init
-      run: scripts/terraform-init ${{ env.GITHUB_HEAD_REF}}
+      run: scripts/terraform-init "${{ github.ref_name }}"
     - name: Terraform Plan
       run: scripts/terraform-plan
     - name: Prepare PR
