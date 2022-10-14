@@ -10,4 +10,4 @@ set -eu
 color="-no-color"
 tty -s && color=""
 
-terraform plan -out plan.out ${color} | tee plan.log
+terraform plan -out plan.out ${color} "$@" | tee plan.log

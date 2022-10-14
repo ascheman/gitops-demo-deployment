@@ -11,6 +11,8 @@ if test "$#" -eq 1; then
   terraform_workspace=$(echo "${1}" | awk -F/ '{print $2}')
 fi
 
+echo "Using Terraform workspace '${terraform_workspace}'"
+
 terraform fmt -check -recursive
 terraform init -backend-config "backends/${AWS_ACCOUNT}-${AWS_REGION}.tf" -reconfigure
 terraform workspace select "${terraform_workspace}" 2>- || terraform workspace new "${terraform_workspace}"
