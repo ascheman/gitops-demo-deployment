@@ -1,0 +1,28 @@
+[command]/home/runner/work/_temp/cdb0f33d-9504-43ae-b3e1-22f0a4e7c052/terraform-bin plan -out plan.out -no-color
+data.aws_region.current: Reading...
+data.aws_caller_identity.current: Reading...
+data.aws_region.current: Read complete after 0s [id=us-east-1]
+data.aws_caller_identity.current: Read complete after 0s [id=942705247267]
+aws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]
+aws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]
+aws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1,public-read]
+aws_s3_object_copy.this: Refreshing state... [id=index.html]
+aws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]
+data.aws_iam_policy_document.bucket_policy: Reading...
+data.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=678825480]
+aws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+::debug::Terraform exited with code 0.
+::debug::stdout: data.aws_region.current: Reading...%0Adata.aws_caller_identity.current: Reading...%0Adata.aws_region.current: Read complete after 0s [id=us-east-1]%0Adata.aws_caller_identity.current: Read complete after 0s [id=942705247267]%0Aaws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Aaws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Aaws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1,public-read]%0Aaws_s3_object_copy.this: Refreshing state... [id=index.html]%0Aaws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Adata.aws_iam_policy_document.bucket_policy: Reading...%0Adata.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=678825480]%0Aaws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0A%0ANo changes. Your infrastructure matches the configuration.%0A%0ATerraform has compared your real infrastructure against your configuration%0Aand found no differences, so no changes are needed.%0A
+::debug::stderr: 
+::debug::exitcode: 0
+
+::set-output name=stdout::data.aws_region.current: Reading...%0Adata.aws_caller_identity.current: Reading...%0Adata.aws_region.current: Read complete after 0s [id=us-east-1]%0Adata.aws_caller_identity.current: Read complete after 0s [id=942705247267]%0Aaws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Aaws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Aaws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1,public-read]%0Aaws_s3_object_copy.this: Refreshing state... [id=index.html]%0Aaws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0Adata.aws_iam_policy_document.bucket_policy: Reading...%0Adata.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=678825480]%0Aaws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-test-us-east-1]%0A%0ANo changes. Your infrastructure matches the configuration.%0A%0ATerraform has compared your real infrastructure against your configuration%0Aand found no differences, so no changes are needed.%0A
+
+::set-output name=stderr::
+
+::set-output name=exitcode::0
