@@ -15,5 +15,5 @@ echo "Using Terraform workspace '${TERRAFORM_WORKSPACE}'"
 
 terraform fmt -check -recursive
 terraform init -backend-config "backends/${AWS_ACCOUNT}-${AWS_REGION}.tf" -reconfigure
-terraform workspace select "${TERRAFORM_WORKSPACE}" 2>- || terraform workspace new "${TERRAFORM_WORKSPACE}"
+terraform workspace select "${TERRAFORM_WORKSPACE}" 2>&- || terraform workspace new "${TERRAFORM_WORKSPACE}"
 terraform validate
