@@ -15,8 +15,29 @@ env:
   GIT_AUTHOR_EMAIL: "github@acme.com"
 
 jobs:
+  checkplan:
+    name: "Check Terraform Plan"
+    runs-on: ubuntu-latest
+    environment: production
+    outputs:
+      run_terraform: ${{ steps.terraform_plan_exists.outputs.run_terraform }}
+    steps:
+      # Check if a plan exists and abort otherwise
+      - name: Check Plan
+        id: terraform_plan_exists
+        run: |
+          if test -r "plan.out"; then
+            echo "::set-output name=run_terraform::true"
+          else
+            echo "No Terraform Plan exists (stopping here)!" >&2
+            echo "::set-output name=run_terraform::false"
+          fi
+
   terraform:
     name: 'Terraform'
+    needs: [checkplan]
+    if: needs.checkplan.outputs.run_terraform == 'true'
+
     runs-on: ubuntu-latest
     environment: production
 
@@ -29,10 +50,6 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
-
-    # Check if a plan exists and abort otherwise
-    - name: checkplan
-      run: if ! test -r "plan.out"; then echo "No Terraform Plan exists (aborting)!" >&2; exit 1; fi
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
