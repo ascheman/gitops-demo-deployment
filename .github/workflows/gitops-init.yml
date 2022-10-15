@@ -1,0 +1,56 @@
+name: 'GitOps Init'
+
+on:
+  push:
+    branches: [ "init/**" ]
+  workflow_dispatch: {}
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  GIT_COMMITTER_NAME: "GitHub Action"
+  GIT_COMMITTER_EMAIL: "github@acme.com"
+  GIT_AUTHOR_NAME: "GitHub Action"
+  GIT_AUTHOR_EMAIL: "github@acme.com"
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    # Compute desired Terraform workspace
+    - name: Compute Terraform Workspace
+      run: echo TERRAFORM_WORKSPACE=$(echo "${{ github.ref_name }}" | awk -F/ '{print $2}') >> $GITHUB_ENV
+
+    # Initialize Terraform, compute plan wrt. current state, and commit plan/log to prepare pull-request
+    - name: Terraform Init
+      run: scripts/terraform-init "${{ env.TERRAFORM_WORKSPACE }}"
+    - name: Terraform Plan
+      run: scripts/terraform-plan
+    - name: Commit plan and log
+      run: git add -f plan.out plan.log && git commit -m"Compute Terraform plan" && git push
+    - name: Terraform Apply
+      run: scripts/terraform-apply
+    - name: Finalize PR
+      run: git rm -f plan.out plan.log && git commit -m"Applied the computed Terraform plan" && git push -f origin HEAD:perform/${{ env.TERRAFORM_WORKSPACE }}
+
+    - name: Check git status
+      run: git status && git branch -v && git branch -rv
+
+
