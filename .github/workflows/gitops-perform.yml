@@ -19,6 +19,7 @@ jobs:
     name: "Check Terraform Plan"
     runs-on: ubuntu-latest
     environment: production
+    # FIXME: set-output is deprecated (cf. https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/)
     outputs:
       run_terraform: ${{ steps.terraform_plan_exists.outputs.run_terraform }}
     steps:
