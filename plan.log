@@ -1,0 +1,199 @@
+[command]/home/runner/work/_temp/e49bd6ba-06e5-44d0-891e-80f5336cfb40/terraform-bin plan -out plan.out -no-color -destroy
+data.aws_region.current: Reading...
+data.aws_caller_identity.current: Reading...
+data.aws_region.current: Read complete after 0s [id=us-east-1]
+data.aws_caller_identity.current: Read complete after 1s [id=942705247267]
+aws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]
+aws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]
+aws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read]
+aws_s3_object_copy.this: Refreshing state... [id=index.html]
+data.aws_iam_policy_document.bucket_policy: Reading...
+aws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]
+data.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=1244411929]
+aws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.this will be destroyed
+  - resource "aws_s3_bucket" "this" {
+      - arn                         = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - bucket                      = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - bucket_domain_name          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null
+      - bucket_regional_domain_name = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null
+      - force_destroy               = false -> null
+      - hosted_zone_id              = "Z3AQBSTGFYJSTF" -> null
+      - id                          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - object_lock_enabled         = false -> null
+      - policy                      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:GetObject"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "*"
+                        }
+                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region                      = "us-east-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {
+          - "Git-Commit" = "unknown"
+          - "Version"    = "init"
+        } -> null
+      - tags_all                    = {
+          - "Git-Commit" = "unknown"
+          - "Version"    = "init"
+        } -> null
+      - website_domain              = "s3-website-us-east-1.amazonaws.com" -> null
+      - website_endpoint            = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null
+
+      - grant {
+          - permissions = [
+              - "READ",
+            ] -> null
+          - type        = "Group" -> null
+          - uri         = "http://acs.amazonaws.com/groups/global/AllUsers" -> null
+        }
+      - grant {
+          - id          = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+        }
+
+      - versioning {
+          - enabled    = true -> null
+          - mfa_delete = false -> null
+        }
+
+      - website {
+          - index_document = "index.html" -> null
+        }
+    }
+
+  # aws_s3_bucket_acl.this will be destroyed
+  - resource "aws_s3_bucket_acl" "this" {
+      - acl    = "public-read" -> null
+      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read" -> null
+
+      - access_control_policy {
+          - grant {
+              - permission = "READ" -> null
+
+              - grantee {
+                  - type = "Group" -> null
+                  - uri  = "http://acs.amazonaws.com/groups/global/AllUsers" -> null
+                }
+            }
+          - grant {
+              - permission = "FULL_CONTROL" -> null
+
+              - grantee {
+                  - display_name = "aws-test0" -> null
+                  - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null
+                  - type         = "CanonicalUser" -> null
+                }
+            }
+
+          - owner {
+              - display_name = "aws-test0" -> null
+              - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null
+            }
+        }
+    }
+
+  # aws_s3_bucket_policy.bucket_policy will be destroyed
+  - resource "aws_s3_bucket_policy" "bucket_policy" {
+      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:GetObject"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "*"
+                        }
+                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"
+                      - Sid       = ""
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+    }
+
+  # aws_s3_bucket_versioning.this will be destroyed
+  - resource "aws_s3_bucket_versioning" "this" {
+      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+
+      - versioning_configuration {
+          - status = "Enabled" -> null
+        }
+    }
+
+  # aws_s3_bucket_website_configuration.this will be destroyed
+  - resource "aws_s3_bucket_website_configuration" "this" {
+      - bucket           = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - id               = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - website_domain   = "s3-website-us-east-1.amazonaws.com" -> null
+      - website_endpoint = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null
+
+      - index_document {
+          - suffix = "index.html" -> null
+        }
+    }
+
+  # aws_s3_object_copy.this will be destroyed
+  - resource "aws_s3_object_copy" "this" {
+      - acl                = "private" -> null
+      - bucket             = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null
+      - bucket_key_enabled = false -> null
+      - content_type       = "text/html" -> null
+      - etag               = "a81c097649d018c4ef568d6436fc46ec" -> null
+      - force_destroy      = false -> null
+      - id                 = "index.html" -> null
+      - key                = "index.html" -> null
+      - last_modified      = "2022-10-15T13:59:24Z" -> null
+      - metadata           = {} -> null
+      - request_charged    = false -> null
+      - source             = "aschemann-gitops-sample-repository-942705247267-us-east-1/index-init.html" -> null
+      - source_version_id  = "m7M1tEJlT5zqkttLYeghC5u.AYAT.TzU" -> null
+      - storage_class      = "STANDARD" -> null
+      - tags               = {} -> null
+      - tags_all           = {} -> null
+      - version_id         = "null" -> null
+    }
+
+Plan: 0 to add, 0 to change, 6 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: plan.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "plan.out"
+::debug::Terraform exited with code 0.
+::debug::stdout: data.aws_region.current: Reading...%0Adata.aws_caller_identity.current: Reading...%0Adata.aws_region.current: Read complete after 0s [id=us-east-1]%0Adata.aws_caller_identity.current: Read complete after 1s [id=942705247267]%0Aaws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Aaws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Aaws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read]%0Aaws_s3_object_copy.this: Refreshing state... [id=index.html]%0Adata.aws_iam_policy_document.bucket_policy: Reading...%0Aaws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Adata.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=1244411929]%0Aaws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0A%0ATerraform used the selected providers to generate the following execution%0Aplan. Resource actions are indicated with the following symbols:%0A  - destroy%0A%0ATerraform will perform the following actions:%0A%0A  # aws_s3_bucket.this will be destroyed%0A  - resource "aws_s3_bucket" "this" {%0A      - arn                         = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket                      = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket_domain_name          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null%0A      - bucket_regional_domain_name = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null%0A      - force_destroy               = false -> null%0A      - hosted_zone_id              = "Z3AQBSTGFYJSTF" -> null%0A      - id                          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - object_lock_enabled         = false -> null%0A      - policy                      = jsonencode(%0A            {%0A              - Statement = [%0A                  - {%0A                      - Action    = "s3:GetObject"%0A                      - Effect    = "Allow"%0A                      - Principal = {%0A                          - AWS = "*"%0A                        }%0A                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"%0A                      - Sid       = ""%0A                    },%0A                ]%0A              - Version   = "2012-10-17"%0A            }%0A        ) -> null%0A      - region                      = "us-east-1" -> null%0A      - request_payer               = "BucketOwner" -> null%0A      - tags                        = {%0A          - "Git-Commit" = "unknown"%0A          - "Version"    = "init"%0A        } -> null%0A      - tags_all                    = {%0A          - "Git-Commit" = "unknown"%0A          - "Version"    = "init"%0A        } -> null%0A      - website_domain              = "s3-website-us-east-1.amazonaws.com" -> null%0A      - website_endpoint            = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null%0A%0A      - grant {%0A          - permissions = [%0A              - "READ",%0A            ] -> null%0A          - type        = "Group" -> null%0A          - uri         = "http://acs.amazonaws.com/groups/global/AllUsers" -> null%0A        }%0A      - grant {%0A          - id          = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A          - permissions = [%0A              - "FULL_CONTROL",%0A            ] -> null%0A          - type        = "CanonicalUser" -> null%0A        }%0A%0A      - versioning {%0A          - enabled    = true -> null%0A          - mfa_delete = false -> null%0A        }%0A%0A      - website {%0A          - index_document = "index.html" -> null%0A        }%0A    }%0A%0A  # aws_s3_bucket_acl.this will be destroyed%0A  - resource "aws_s3_bucket_acl" "this" {%0A      - acl    = "public-read" -> null%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read" -> null%0A%0A      - access_control_policy {%0A          - grant {%0A              - permission = "READ" -> null%0A%0A              - grantee {%0A                  - type = "Group" -> null%0A                  - uri  = "http://acs.amazonaws.com/groups/global/AllUsers" -> null%0A                }%0A            }%0A          - grant {%0A              - permission = "FULL_CONTROL" -> null%0A%0A              - grantee {%0A                  - display_name = "aws-test0" -> null%0A                  - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A                  - type         = "CanonicalUser" -> null%0A                }%0A            }%0A%0A          - owner {%0A              - display_name = "aws-test0" -> null%0A              - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A            }%0A        }%0A    }%0A%0A  # aws_s3_bucket_policy.bucket_policy will be destroyed%0A  - resource "aws_s3_bucket_policy" "bucket_policy" {%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - policy = jsonencode(%0A            {%0A              - Statement = [%0A                  - {%0A                      - Action    = "s3:GetObject"%0A                      - Effect    = "Allow"%0A                      - Principal = {%0A                          - AWS = "*"%0A                        }%0A                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"%0A                      - Sid       = ""%0A                    },%0A                ]%0A              - Version   = "2012-10-17"%0A            }%0A        ) -> null%0A    }%0A%0A  # aws_s3_bucket_versioning.this will be destroyed%0A  - resource "aws_s3_bucket_versioning" "this" {%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A%0A      - versioning_configuration {%0A          - status = "Enabled" -> null%0A        }%0A    }%0A%0A  # aws_s3_bucket_website_configuration.this will be destroyed%0A  - resource "aws_s3_bucket_website_configuration" "this" {%0A      - bucket           = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id               = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - website_domain   = "s3-website-us-east-1.amazonaws.com" -> null%0A      - website_endpoint = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null%0A%0A      - index_document {%0A          - suffix = "index.html" -> null%0A        }%0A    }%0A%0A  # aws_s3_object_copy.this will be destroyed%0A  - resource "aws_s3_object_copy" "this" {%0A      - acl                = "private" -> null%0A      - bucket             = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket_key_enabled = false -> null%0A      - content_type       = "text/html" -> null%0A      - etag               = "a81c097649d018c4ef568d6436fc46ec" -> null%0A      - force_destroy      = false -> null%0A      - id                 = "index.html" -> null%0A      - key                = "index.html" -> null%0A      - last_modified      = "2022-10-15T13:59:24Z" -> null%0A      - metadata           = {} -> null%0A      - request_charged    = false -> null%0A      - source             = "aschemann-gitops-sample-repository-942705247267-us-east-1/index-init.html" -> null%0A      - source_version_id  = "m7M1tEJlT5zqkttLYeghC5u.AYAT.TzU" -> null%0A      - storage_class      = "STANDARD" -> null%0A      - tags               = {} -> null%0A      - tags_all           = {} -> null%0A      - version_id         = "null" -> null%0A    }%0A%0APlan: 0 to add, 0 to change, 6 to destroy.%0A%0A─────────────────────────────────────────────────────────────────────────────%0A%0ASaved the plan to: plan.out%0A%0ATo perform exactly these actions, run the following command to apply:%0A    terraform apply "plan.out"%0A
+::debug::stderr: 
+::debug::exitcode: 0
+
+::set-output name=stdout::data.aws_region.current: Reading...%0Adata.aws_caller_identity.current: Reading...%0Adata.aws_region.current: Read complete after 0s [id=us-east-1]%0Adata.aws_caller_identity.current: Read complete after 1s [id=942705247267]%0Aaws_s3_bucket.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Aaws_s3_bucket_versioning.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Aaws_s3_bucket_acl.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read]%0Aaws_s3_object_copy.this: Refreshing state... [id=index.html]%0Adata.aws_iam_policy_document.bucket_policy: Reading...%0Aaws_s3_bucket_website_configuration.this: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0Adata.aws_iam_policy_document.bucket_policy: Read complete after 0s [id=1244411929]%0Aaws_s3_bucket_policy.bucket_policy: Refreshing state... [id=aschemann-gitops-sample-942705247267-demo-20221015-us-east-1]%0A%0ATerraform used the selected providers to generate the following execution%0Aplan. Resource actions are indicated with the following symbols:%0A  - destroy%0A%0ATerraform will perform the following actions:%0A%0A  # aws_s3_bucket.this will be destroyed%0A  - resource "aws_s3_bucket" "this" {%0A      - arn                         = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket                      = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket_domain_name          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null%0A      - bucket_regional_domain_name = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3.amazonaws.com" -> null%0A      - force_destroy               = false -> null%0A      - hosted_zone_id              = "Z3AQBSTGFYJSTF" -> null%0A      - id                          = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - object_lock_enabled         = false -> null%0A      - policy                      = jsonencode(%0A            {%0A              - Statement = [%0A                  - {%0A                      - Action    = "s3:GetObject"%0A                      - Effect    = "Allow"%0A                      - Principal = {%0A                          - AWS = "*"%0A                        }%0A                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"%0A                      - Sid       = ""%0A                    },%0A                ]%0A              - Version   = "2012-10-17"%0A            }%0A        ) -> null%0A      - region                      = "us-east-1" -> null%0A      - request_payer               = "BucketOwner" -> null%0A      - tags                        = {%0A          - "Git-Commit" = "unknown"%0A          - "Version"    = "init"%0A        } -> null%0A      - tags_all                    = {%0A          - "Git-Commit" = "unknown"%0A          - "Version"    = "init"%0A        } -> null%0A      - website_domain              = "s3-website-us-east-1.amazonaws.com" -> null%0A      - website_endpoint            = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null%0A%0A      - grant {%0A          - permissions = [%0A              - "READ",%0A            ] -> null%0A          - type        = "Group" -> null%0A          - uri         = "http://acs.amazonaws.com/groups/global/AllUsers" -> null%0A        }%0A      - grant {%0A          - id          = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A          - permissions = [%0A              - "FULL_CONTROL",%0A            ] -> null%0A          - type        = "CanonicalUser" -> null%0A        }%0A%0A      - versioning {%0A          - enabled    = true -> null%0A          - mfa_delete = false -> null%0A        }%0A%0A      - website {%0A          - index_document = "index.html" -> null%0A        }%0A    }%0A%0A  # aws_s3_bucket_acl.this will be destroyed%0A  - resource "aws_s3_bucket_acl" "this" {%0A      - acl    = "public-read" -> null%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1,public-read" -> null%0A%0A      - access_control_policy {%0A          - grant {%0A              - permission = "READ" -> null%0A%0A              - grantee {%0A                  - type = "Group" -> null%0A                  - uri  = "http://acs.amazonaws.com/groups/global/AllUsers" -> null%0A                }%0A            }%0A          - grant {%0A              - permission = "FULL_CONTROL" -> null%0A%0A              - grantee {%0A                  - display_name = "aws-test0" -> null%0A                  - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A                  - type         = "CanonicalUser" -> null%0A                }%0A            }%0A%0A          - owner {%0A              - display_name = "aws-test0" -> null%0A              - id           = "84c2362353b4a53919791de2c3ff83ffbe015719bed950399084ab955701196f" -> null%0A            }%0A        }%0A    }%0A%0A  # aws_s3_bucket_policy.bucket_policy will be destroyed%0A  - resource "aws_s3_bucket_policy" "bucket_policy" {%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - policy = jsonencode(%0A            {%0A              - Statement = [%0A                  - {%0A                      - Action    = "s3:GetObject"%0A                      - Effect    = "Allow"%0A                      - Principal = {%0A                          - AWS = "*"%0A                        }%0A                      - Resource  = "arn:aws:s3:::aschemann-gitops-sample-942705247267-demo-20221015-us-east-1/*"%0A                      - Sid       = ""%0A                    },%0A                ]%0A              - Version   = "2012-10-17"%0A            }%0A        ) -> null%0A    }%0A%0A  # aws_s3_bucket_versioning.this will be destroyed%0A  - resource "aws_s3_bucket_versioning" "this" {%0A      - bucket = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id     = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A%0A      - versioning_configuration {%0A          - status = "Enabled" -> null%0A        }%0A    }%0A%0A  # aws_s3_bucket_website_configuration.this will be destroyed%0A  - resource "aws_s3_bucket_website_configuration" "this" {%0A      - bucket           = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - id               = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - website_domain   = "s3-website-us-east-1.amazonaws.com" -> null%0A      - website_endpoint = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1.s3-website-us-east-1.amazonaws.com" -> null%0A%0A      - index_document {%0A          - suffix = "index.html" -> null%0A        }%0A    }%0A%0A  # aws_s3_object_copy.this will be destroyed%0A  - resource "aws_s3_object_copy" "this" {%0A      - acl                = "private" -> null%0A      - bucket             = "aschemann-gitops-sample-942705247267-demo-20221015-us-east-1" -> null%0A      - bucket_key_enabled = false -> null%0A      - content_type       = "text/html" -> null%0A      - etag               = "a81c097649d018c4ef568d6436fc46ec" -> null%0A      - force_destroy      = false -> null%0A      - id                 = "index.html" -> null%0A      - key                = "index.html" -> null%0A      - last_modified      = "2022-10-15T13:59:24Z" -> null%0A      - metadata           = {} -> null%0A      - request_charged    = false -> null%0A      - source             = "aschemann-gitops-sample-repository-942705247267-us-east-1/index-init.html" -> null%0A      - source_version_id  = "m7M1tEJlT5zqkttLYeghC5u.AYAT.TzU" -> null%0A      - storage_class      = "STANDARD" -> null%0A      - tags               = {} -> null%0A      - tags_all           = {} -> null%0A      - version_id         = "null" -> null%0A    }%0A%0APlan: 0 to add, 0 to change, 6 to destroy.%0A%0A─────────────────────────────────────────────────────────────────────────────%0A%0ASaved the plan to: plan.out%0A%0ATo perform exactly these actions, run the following command to apply:%0A    terraform apply "plan.out"%0A
+
+::set-output name=stderr::
+
+::set-output name=exitcode::0
