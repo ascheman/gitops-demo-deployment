@@ -48,6 +48,6 @@ jobs:
     - name: Create PR
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh pr create -t'Merge computed plan' -B perform/${{ env.TERRAFORM_WORKSPACE }} -b 'Apply the computed plan'
+      run: gh pr create -t'Apply the computed plan' -B perform/${{ env.TERRAFORM_WORKSPACE }} -b 'Apply the computed plan'
 
 
