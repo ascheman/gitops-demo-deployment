@@ -6,14 +6,14 @@ set -eu
 : "${AWS_DEFAULT_REGION:=us-east-1}"
 : "${AWS_REGION:=${AWS_DEFAULT_REGION}}"
 
-terraform_workspace="default"
+: "${TERRAFORM_WORKSPACE:='default'}"
 if test "$#" -eq 1; then
-  terraform_workspace=$(echo "${1}" | awk -F/ '{print $2}')
+  TERRAFORM_WORKSPACE="${1}"
 fi
 
-echo "Using Terraform workspace '${terraform_workspace}'"
+echo "Using Terraform workspace '${TERRAFORM_WORKSPACE}'"
 
 terraform fmt -check -recursive
 terraform init -backend-config "backends/${AWS_ACCOUNT}-${AWS_REGION}.tf" -reconfigure
-terraform workspace select "${terraform_workspace}" 2>- || terraform workspace new "${terraform_workspace}"
+terraform workspace select "${TERRAFORM_WORKSPACE}" 2>- || terraform workspace new "${TERRAFORM_WORKSPACE}"
 terraform validate
