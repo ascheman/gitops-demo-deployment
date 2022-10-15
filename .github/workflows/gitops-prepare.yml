@@ -34,12 +34,20 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
-    # Initialize Terraform, compute plan wrt. current state, and commit plan/log to prepare pull-request
+    # Compute desired Terraform workspace
+    - name: Compute Terraform Workspace
+      run: echo TERRAFORM_WORKSPACE=$(echo "${{ github.ref_name }}" | awk -F/ '{print $2}') >> $GITHUB_ENV
+
+      # Initialize Terraform, compute plan wrt. current state, and commit plan/log to prepare pull-request
     - name: Terraform Init
-      run: scripts/terraform-init "${{ github.ref_name }}"
+      run: scripts/terraform-init "${{ env.TERRAFORM_WORKSPACE }}"
     - name: Terraform Plan
       run: scripts/terraform-plan
     - name: Prepare PR
       run: git add -f plan.out plan.log && git commit -m"Compute Terraform plan" && git push
+    - name: Create PR
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh pr create -t'Merge computed plan' -B perform/${{ env.TERRAFORM_WORKSPACE }} -b 'Apply the computed plan'
 
 
