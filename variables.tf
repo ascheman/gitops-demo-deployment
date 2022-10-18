@@ -1,6 +1,6 @@
 variable "deliverable_version" {
   type        = string
-  default     = "v2"
+  default     = "v3"
   description = "Version of the deliverable to be deployed"
 }
 
