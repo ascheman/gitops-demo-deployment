@@ -2,7 +2,9 @@ name: 'GitOps Init'
 
 on:
   push:
-    branches: [ "init/**" ]
+    branches:
+    - "init/**"
+    - "auto-perform/**"
   workflow_dispatch: {}
 
 env:
